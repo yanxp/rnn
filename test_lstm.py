@@ -44,14 +44,14 @@ class RNNModel(nn.Module):
         super(RNNModel, self).__init__()
         self.hidden_size = hidden_size
         self.num_layers = num_layers
-        self.fc = nn.Linear(input_size,50)
-        self.rnn = LSTM(50, hidden_size, num_layers=num_layers, 
+#         self.fc = nn.Linear(input_size,50)
+        self.rnn = LSTM(input_size, hidden_size, num_layers=num_layers, 
                         bias=bias, return_sequences=False, grad_clip=grad_clip)
         self.fc = nn.Linear(hidden_size, num_classes, bias=bias)
     
     def forward(self, x):
         # Set initial states 
-        x = self.fc(x)
+#         x = self.fc(x)
         zeros = Variable(torch.zeros(x.size(0), self.hidden_size))
         initial_states = [(zeros, zeros)] * self.num_layers
         
